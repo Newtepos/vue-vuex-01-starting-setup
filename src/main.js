@@ -3,12 +3,9 @@ import { createStore } from 'vuex';
 
 import App from './App.vue';
 
-const store = createStore({
+const counterModule = {
   state() {
-    return {
-      counter: 0,
-      isLoggedIn: false,
-    };
+    return { counter: 0 };
   },
   mutations: {
     increment(state) {
@@ -16,9 +13,6 @@ const store = createStore({
     },
     increase(state, payload) {
       state.counter = state.counter + payload.value;
-    },
-    changeLoggedState(state, payload) {
-      state.isLoggedIn = payload.isAuth;
     },
   },
   actions: {
@@ -29,12 +23,6 @@ const store = createStore({
     },
     increase(context, payload) {
       context.commit('increase', payload);
-    },
-    login(context) {
-      context.commit('changeLoggedState', { isAuth: true });
-    },
-    logout(context) {
-      context.commit('changeLoggedState', { isAuth: false });
     },
   },
   getters: {
@@ -51,9 +39,35 @@ const store = createStore({
       }
       return finalCounter;
     },
+  },
+};
+
+const store = createStore({
+  modules: {
+    numbers: counterModule
+  },
+  state() {
+    return {
+      isLoggedIn: false,
+    };
+  },
+  mutations: {
+    changeLoggedState(state, payload) {
+      state.isLoggedIn = payload.isAuth;
+    },
+  },
+  actions: {
+    login(context) {
+      context.commit('changeLoggedState', { isAuth: true });
+    },
+    logout(context) {
+      context.commit('changeLoggedState', { isAuth: false });
+    },
+  },
+  getters: {
     isAuthenticated(state) {
       return state.isLoggedIn;
-    }
+    },
   },
 });
 
