@@ -30,7 +30,7 @@ export default {
     // incrementCounter() {
     //   this.$store.dispatch('increment');
     // },
-    ...mapActions(['increment']),
+    ...mapActions('numbers', ['increment']),
   },
   computed: {
     isAuth() {

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+// import { mapActions } from 'vuex';
 
 export default {
   methods: {
@@ -14,7 +14,15 @@ export default {
     //     value: 10,
     //   });
     // },
-    ...mapActions({addCounter: 'increase'})
+
+    /* ...mapActions({addCounter: 'increase'}),*/
+
+    addCounter(payload) {
+      this.$store.dispatch({
+        type: 'numbers/increase',
+        value: payload.value
+      })
+    }
   },
 };
 </script>

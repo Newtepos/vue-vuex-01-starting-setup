@@ -7,8 +7,8 @@
 import { mapGetters } from 'vuex';
 
 export default {
-    computed: {
-        ...mapGetters(['normalizedCounter'])
-    },
-}
+  computed: {
+    ...mapGetters('numbers', ['normalizedCounter']),
+  },
+};
 </script>
