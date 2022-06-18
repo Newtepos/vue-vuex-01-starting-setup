@@ -7,7 +7,7 @@ export default {
   methods: {
     addCounter() {
       // this.$store.commit('increase', {value: 10});
-      this.$store.commit({
+      this.$store.dispatch({
         type: 'increase',
         value: 10,
       });
